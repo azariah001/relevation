@@ -6,48 +6,54 @@
     <title>relevation - Information Retrieval Relevance Judging System</title>
     <meta name="description" content="">
     <meta name="author" content="Bevan Koopman">
+    <meta name="author" content="Azarel Howard">
     {% bootstrap_stylesheet_tag %}
     <style type="text/css">
-        body {
-            padding-top: 60px;
-            font-size: 12px;
-        }
-        label, button, .btn {
-            font-size: 12px;
-        }
     </style>
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    {% bootstrap_javascript_tag %}
+
     {% block extra_head %}{% endblock %}
 </head>
 
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="{% url 'judgementapp.views.index' %}">relevation</a>
-            <ul class="nav">
-                <li><a href="{% url 'judgementapp.views.index' %}" class="">Home</a></li>
-                <li><a href="{% url 'judgementapp.views.index' %}upload">Setup</a></li>
-                <li class="dropdown">
-                    <ul class="dropdown-menu">
-                        <li><a class="nav" href="?layout=vertical">Vertical</a></li>
-                        <li><a href="?layout=horizontal">Horizontal</a></li>
-                        <li><a href="?layout=inline">Inline</a></li>
-                        <li><a href="?layout=search">Search</a></li>
-                        <li><a href="?layout=horizontal">Using template</a></li>
-                    </ul>
-                </li>
-                <li><a href="{% url 'judgementapp.views.index' %}about">About</a></li>
-                <li><a href="{% url 'judgementapp.views.query_list' %}">Queries</a></li>
-            </ul>
-        </div>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'judgementapp.views.index' %}">relevation</a>
     </div>
-</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'judgementapp.views.index' %}" class="">Home</a></li>
+        <li><a href="{% url 'judgementapp.views.index' %}upload">Setup</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a class="nav" href="?layout=vertical">Vertical</a></li>
+            <li><a href="?layout=horizontal">Horizontal</a></li>
+            <li><a href="?layout=inline">Inline</a></li>
+            <li><a href="?layout=search">Search</a></li>
+            <li><a href="?layout=horizontal">Using template</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'judgementapp.views.index' %}about">About</a></li>
+        <li><a href="{% url 'judgementapp.views.query_list' %}">Queries</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <div class="container">
 
@@ -58,10 +64,10 @@
     <p><hr></p>
 
     <footer class="row">
-        <div class="span6">
+        <div class="col-md-6">
             <p>relevation - Information Retrieval Relevance Judging System</p>
         </div>
-        <div class="span6" style="text-align:right">
+        <div class="col-md-6" style="text-align:right">
             <p>
                 <a href="http://koopman.id.au">Bevan Koopman</a>
             </p>
@@ -69,6 +75,8 @@
     </footer>
 
 </div> <!-- container -->
+
+    {% bootstrap_javascript_tag %}
 
 </body>
 </html>

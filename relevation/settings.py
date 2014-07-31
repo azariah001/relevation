@@ -162,12 +162,12 @@ LOGGING = {
     }
 }
 
-BOOTSTRAP_BASE_URL      = 'http://getbootstrap.com/2.3.2/assets/'
+BOOTSTRAP_BASE_URL      = 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/'
 BOOTSTRAP_CSS_BASE_URL  = BOOTSTRAP_BASE_URL + 'css/'
-BOOTSTRAP_CSS_URL       = BOOTSTRAP_CSS_BASE_URL + 'bootstrap.css'
+BOOTSTRAP_CSS_URL       = BOOTSTRAP_CSS_BASE_URL + 'bootstrap.min.css'
 BOOTSTRAP_JS_BASE_URL   = BOOTSTRAP_BASE_URL + 'js/'
 # Enable for single bootstrap.js file
-#BOOTSTRAP_JS_URL        = BOOTSTRAP_JS_BASE_URL + 'bootstrap.js'
+BOOTSTRAP_JS_URL        = BOOTSTRAP_JS_BASE_URL + 'bootstrap.min.js'
 
 
 try:
