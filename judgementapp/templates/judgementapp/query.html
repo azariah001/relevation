@@ -2,75 +2,84 @@
 
 {% block content %}
 
-	<div class="well">
-        <h2>{{ query.qId }} - {{ query.text }} <a style="text-align: right;", href="{% url 'judgementapp.views.query_list' %}" class="btn">Back to Queries</a></h2>
-	    <p></p>
+  <div class="well">
+    <h2>{{ query.qId }} - {{ query.text }} <a style="text-align: right;",
+      href="{% url 'judgementapp.views.query_list' %}" class="btn">Back to Queries</a></h2>
+
+    <p></p>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Query</th>
+          <th>Number</th>
+          <th>Document#</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for judgement in judgements %}
+          <tr>
+            <td>{{ query.qId }}</td>
+            <td>{{ forloop.counter }}</td>
+            <td><a
+                href="{% url 'judgementapp.views.document' qId=query.qId docId=judgement.document.docId %}">{{ judgement.document }}</a>
+            </td>
+            <td style="color:
+                {% if judgement.relevance == -1 %} black {% endif %}
+                {% if judgement.relevance == 0 %} red {% endif %}
+                {% if judgement.relevance == 1 %} orange {% endif %}
+                {% if judgement.relevance == 2 %} green {% endif %}
+                ">{{ judgement.label }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
     </div>
 
-	<div class="row">
-
-        <div class="span12">
-        	<table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Query</th>
-                  <th>Number</th>
-                  <th>Document#</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for judgement in judgements %}
-                  <tr>
-                    <td>{{ query.qId }}</td>
-                    <td>{{ forloop.counter }}</td>
-                    <td><a href="{% url 'judgementapp.views.document' qId=query.qId docId=judgement.document.docId %}">{{ judgement.document }}</a></td>
-                    <td style="color: 
-                      {% if judgement.relevance == -1 %} black {% endif %}
-                      {% if judgement.relevance == 0 %} red {% endif %}
-                      {% if judgement.relevance == 1 %} orange {% endif %}
-                      {% if judgement.relevance == 2 %} green {% endif %}
-                    " >{{ judgement.label }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-
+    <form class="form-inline" action="" method="post">
+      {% csrf_token %}
+      <legend>How hard was this query to judge?</legend>
+      <div class="control-group">
+        <label class="radio inline">
+          <input type="radio" name="difficulty" id="difficulty2" value="2" {% if query.difficulty == 2 %}
+                 checked {% endif %}>
+          Very difficult
+        </label>
+        <label class="radio inline">
+          <input type="radio" name="difficulty" id="difficulty1" value="1" {% if query.difficulty == 1 %}
+                 checked {% endif %}>
+          Moderately difficult
+        </label>
+        <label class="radio inline">
+          <input type="radio" name="difficulty" id="difficulty0" value="0" {% if query.difficulty == 0 %}
+                 checked {% endif %}>
+          Easy
+        </label>
+      </div>
+      <label>Comments:</comments>
+        <div class="control-group">
+          <div class="controls">
+            <textarea rows="3" placehoder="comment" name="comment" class="col-md-6">
+              {% if query.comment %}{{ query.comment }}{% else %}{% endif %}</textarea>
+          </div>
         </div>
 
-           <form class="form-inline" action="" method="post">
-              {% csrf_token %}
-              <legend>How hard was this query to judge?</legend>
-              <div class="control-group">
-                 <label class="radio inline">
-                    <input type="radio" name="difficulty" id="difficulty2" value="2" {% if query.difficulty == 2 %} checked {% endif %}>
-                    Very difficult
-                  </label>
-                  <label class="radio inline">
-                    <input type="radio" name="difficulty" id="difficulty1" value="1" {% if query.difficulty == 1 %} checked {% endif %}>
-                    Moderately difficult
-                  </label>
-                  <label class="radio inline">
-                    <input type="radio" name="difficulty" id="difficulty0" value="0" {% if query.difficulty == 0 %} checked {% endif %}>
-                    Easy
-                  </label>
-              </div>
-              <label>Comments:</comments>
-               <div class="control-group">
-                  <div class="controls">
-                    <textarea rows="3" placehoder="comment" name="comment" class="span6" >{% if query.comment %}{{ query.comment }}{% else %}{% endif %}</textarea>
-                  </div>
-                </div>
-              
 
-              <div class="form-actions">
-                  <button type="submit" class="btn btn-primary" size="20">Save</button> <a href="{% url 'judgementapp.views.query' qId=query.qId %}" class="btn">Cancel</a>
-              </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" size="20">Save</button>
+          <a href="{% url 'judgementapp.views.query' qId=query.qId %}" class="btn">Cancel</a>
+        </div>
 
-            </form>
+    </form>
 
-        
-    </div>
+
+  </div>
 
 
 {% endblock %}

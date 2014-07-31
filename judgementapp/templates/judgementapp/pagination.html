@@ -4,16 +4,16 @@
 
 {% block content %}
 
-    <h1>Pagination</h1>
+  <h1>Pagination</h1>
 
-    <table class="table">
-        {% for line in lines %}
-            <tr>
-                <td>{{ line }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+  <table class="table">
+    {% for line in lines %}
+      <tr>
+        <td>{{ line }}</td>
+      </tr>
+    {% endfor %}
+  </table>
 
-    {{ lines|pagination }}
+  {{ lines|pagination }}
 
 {% endblock %}
