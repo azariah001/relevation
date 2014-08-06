@@ -9,7 +9,7 @@
     <div class="col-md-12">
       <div class="well">
         <h2>{{ query.qId }} - {{ query.text }} <a style="text-align: right;",
-          href="{% url 'judgementapp.views.query' qId=query.qId %}" class="btn">Back to Query</a></h2>
+          href="{% url 'judgementapp.views.query' qId=query.qId %}" class="btn btn-default">Back to Query</a></h2>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
 
     <div class="col-md-3">
       {% if prev %}
-        <a href="{% url 'judgementapp.views.document' qId=query.qId docId=prev.document.docId %}" class="btn">Prev
+        <a href="{% url 'judgementapp.views.document' qId=query.qId docId=prev.document.docId %}" class="btn btn-default">Prev
           Document</a>
       {% endif %}
     </div>
@@ -28,7 +28,7 @@
 
     <div class="col-md-3" align="right">
       {% if next %}
-        <a href="{% url 'judgementapp.views.document' qId=query.qId docId=next.document.docId %}" class="btn">Next
+        <a href="{% url 'judgementapp.views.document' qId=query.qId docId=next.document.docId %}" class="btn btn-default">Next
           Document</a>
       {% endif %}
     </div>
