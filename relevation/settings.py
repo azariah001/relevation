@@ -5,11 +5,11 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-DATA_DIR=os.getcwd()+'/documents'
+DATA_DIR=os.getcwd()+'/django/relevation/documents'
 URL_PREFIX=''
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    # ('azariah001', 'azariah001@gmail.com'),
 )
 
 MANAGERS = ADMINS

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <div class="well" style="box-shadow: rgba(0,0,0,0.5) 2px 2px 10px 1px inset">
+  <div class="well dark">
     <h2>{{ query.qId }} - {{ query.text }} <a style="text-align: right;",
       href="{% url 'judgementapp.views.query_list' %}" class="btn btn-default">Back to Queries</a></h2>
 
@@ -10,8 +10,8 @@
 
   <div class="row">
 
-    <div class="col-md-12">
-      <table class="table table-striped">
+    <div class="col-md-9 col-sm-8">
+      <table class="table table-striped well">
         <thead>
         <tr>
           <th>Query</th>
@@ -38,44 +38,46 @@
         {% endfor %}
         </tbody>
       </table>
-      <paper-shadow z="1"></paper-shadow>
     </div>
 
-    <form class="form-inline" action="" method="post">
-      {% csrf_token %}
-      <legend>How hard was this query to judge?</legend>
-      <div class="control-group">
-        <label class="radio inline">
-          <input type="radio" name="difficulty" id="difficulty2" value="2" {% if query.difficulty == 2 %}
-                 checked {% endif %}>
-          Very difficult
-        </label>
-        <label class="radio inline">
-          <input type="radio" name="difficulty" id="difficulty1" value="1" {% if query.difficulty == 1 %}
-                 checked {% endif %}>
-          Moderately difficult
-        </label>
-        <label class="radio inline">
-          <input type="radio" name="difficulty" id="difficulty0" value="0" {% if query.difficulty == 0 %}
-                 checked {% endif %}>
-          Easy
-        </label>
-      </div>
-      <label>Comments:</label>
-      <div class="control-group">
-        <div class="controls">
-          <textarea rows="3" placehoder="comment" name="comment" class="col-md-6">
-            {% if query.comment %}{{ query.comment }}{% else %}{% endif %}</textarea>
-        </div>
-      </div>
+    <div class="col-md-3 col-sm-4">
+      <div class="well">
+        <form class="form-inline" action="" method="post">
+          {% csrf_token %}
+          <legend>How hard was this query to judge?</legend>
+          <div class="control-group">
+            <label class="radio-inline">
+              <input type="radio" name="difficulty" id="difficulty2" value="2" {% if query.difficulty == 2 %}
+                     checked {% endif %}>
+              Very difficult
+            </label><br>
+            <label class="radio-inline">
+              <input type="radio" name="difficulty" id="difficulty1" value="1" {% if query.difficulty == 1 %}
+                     checked {% endif %}>
+              Moderately difficult
+            </label><br>
+            <label class="radio-inline">
+              <input type="radio" name="difficulty" id="difficulty0" value="0" {% if query.difficulty == 0 %}
+                     checked {% endif %}>
+              Easy
+            </label>
+          </div>
+          <label>Comments:</label>
+          <div class="control-group">
+            <div class="controls">
+              <textarea rows="3" placehoder="comment" name="comment" style="width: 100%">
+                {% if query.comment %}{{ query.comment }}{% else %}{% endif %}</textarea>
+            </div>
+          </div>
 
 
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary" size="20">Save</button>
-        <a href="{% url 'judgementapp.views.query' qId=query.qId %}" class="btn btn-default">Cancel</a>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" size="20" style="width: 70px">Save</button>
+            <a href="{% url 'judgementapp.views.query' qId=query.qId %}" class="btn btn-default" style="width: 70px">Cancel</a>
+          </div>
+        </form>
       </div>
-      <paper-shadow z="1"></paper-shadow>
-    </form>
+    </div>
 
 
   </div>

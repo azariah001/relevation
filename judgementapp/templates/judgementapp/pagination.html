@@ -6,13 +6,12 @@
 
   <h1>Pagination</h1>
 
-  <table class="table">
+  <table class="table well">
     {% for line in lines %}
       <tr>
         <td>{{ line }}</td>
       </tr>
     {% endfor %}
-    <paper-shadow z="1"></paper-shadow>
   </table>
 
   {{ lines|pagination }}

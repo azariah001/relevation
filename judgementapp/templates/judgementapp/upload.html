@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <div class="well" style="box-shadow: rgba(0,0,0,0.5) 2px 2px 10px 1px inset">
+  <div class="well dark">
     <h2>Setup</h2>
   </div>
 
@@ -20,8 +20,7 @@
     {% endif %}
     {% if not queries and not results %}
       <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <paper-shadow z="1"></paper-shadow>
+      <div class="col-md-6 well">
 
         <form class="form-horizontal" action="save" method="post" enctype="multipart/form-data" style="padding-top: 8px; padding-bottom: 15px; text-align: center;">
           {% csrf_token %}

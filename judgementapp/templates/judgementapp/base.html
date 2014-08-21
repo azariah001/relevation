@@ -17,6 +17,31 @@
     .btn {
       border-width: 1px;
     }
+    .well.dark {
+      background-color: #E8E8E8;
+    }
+  </style>
+  <style>
+    /* Sticky footer styles
+    -------------------------------------------------- */
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 60px;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      padding-top: 10px;
+      min-height: 30px;
+      background-color: #f5f5f5;
+    }
   </style>
   <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -41,42 +66,32 @@
 <div class="container">
   <div class="row">
     <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'judgementapp.views.index' %}">relevation</a>
-      </div>
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'judgementapp.views.index' %}">relevation</a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'judgementapp.views.index' %}" class="">Home</a></li>
-          <li><a href="{% url 'judgementapp.views.index' %}upload">Setup</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Layout <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a class="nav" href="?layout=vertical">Vertical</a></li>
-              <li><a href="?layout=horizontal">Horizontal</a></li>
-              <li><a href="?layout=inline">Inline</a></li>
-              <li><a href="?layout=search">Search</a></li>
-              <li><a href="?layout=horizontal">Using template</a></li>
-            </ul>
-          </li>
-          <li><a href="{% url 'judgementapp.views.index' %}about">About</a></li>
-          <li><a href="{% url 'judgementapp.views.query_list' %}">Queries</a></li>
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'judgementapp.views.index' %}" class="">Home</a></li>
+            <li><a href="{% url 'judgementapp.views.index' %}upload">Setup</a></li>
+            <li><a href="{% url 'judgementapp.views.index' %}about">About</a></li>
+            <li><a href="{% url 'judgementapp.views.query_list' %}">Queries</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
       </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-    <paper-shadow z="2"></paper-shadow>
-  </nav>
+      <!-- /.container-fluid -->
+      <paper-shadow z="1"></paper-shadow>
+    </nav>
   </div>
 
 
@@ -88,22 +103,25 @@
   <hr>
   </p>
 
-  <footer class="row">
-    <div class="col-md-6">
-      <p>relevation - Information Retrieval Relevance Judging System</p>
+  <div class="footer">
+    <div class="container">
+      <div class="col-lg-12">
+        <div class="col-sm-6">
+          <p>relevation - Information Retrieval Relevance Judging System</p>
+        </div>
+        <div class="col-sm-3" style="text-align:right">
+          <p>
+            Created: <a href="http://koopman.id.au">Bevan Koopman</a>
+          </p>
+        </div>
+        <div class="col-sm-3" style="text-align:right">
+          <p>
+            Upgraded: <a href="http://azarel-howard.me/">Azarel Howard</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-md-3" style="text-align:right">
-      <p>
-        Created: <a href="http://koopman.id.au">Bevan Koopman</a>
-      </p>
-    </div>
-    <div class="col-md-3" style="text-align:right">
-      <p>
-        Upgraded: <a href="http://azarel-howard.me/">Azarel Howard</a>
-      </p>
-    </div>
-    <paper-shadow z="0"></paper-shadow>
-  </footer>
+  </div>
 
 </div>
 <!-- container -->
