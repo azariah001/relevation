@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from BeautifulSoup import BeautifulSoup as Soup
 
 # Create your models here.
 
@@ -7,7 +8,6 @@ from django.db import models
 class Document(models.Model):
     docId = models.CharField(max_length=250)
     text = models.TextField()
-
 
     def __unicode__(self):
         return self.docId
@@ -17,18 +17,26 @@ class Document(models.Model):
 
         # need to query SQLite DB for the format
         # SELECT format FROM judgementapp_document WHERE docID=' + self.docID + '
-        format = ""
+        file_type = ""
 
-        if format == "html":
+        if file_type == "html":
             try:
                 with open(settings.DATA_DIR + "/" + self.docId) as f:
                     content = f.read()
             except Exception:
                 content = "Could not read html file %s" % settings.DATA_DIR + "/" + self.docId
-        elif format == "trec":
+        elif file_type == "trec":
             try:
                 with open(settings.DATA_DIR + "/" + self.docId) as f:
                     content = f.read()
+
+                    #this is an implementation for trectxt
+                    soup = Soup(content)
+                    for doc in soup.findAll('doc'):
+                        doc_no = doc.find('docno')
+                        text = doc.find('text')
+                        content = "<h5>" + doc_no + "</h5><p>" + text + "</p>"
+
             except Exception:
                 content = "Could not read trrec file %s" % settings.DATA_DIR + "/" + self.docId
         else:
