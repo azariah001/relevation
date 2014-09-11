@@ -17,7 +17,7 @@ class Document(models.Model):
 
         # need to query SQLite DB for the format
         # SELECT format FROM judgementapp_document WHERE docID=' + self.docID + '
-        file_type = ""
+        file_type = "html"
 
         if file_type == "html":
             try:
