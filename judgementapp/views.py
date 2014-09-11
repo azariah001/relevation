@@ -51,9 +51,12 @@ def query(request, qId):
 def document(request, qId, docId):
     document = Document.objects.get(docId=docId)
     query = Query.objects.get(qId=qId)
+    e = Document.objects.get(docId=docId)
+    file_type = e.format
 
     judgements = Judgement.objects.filter(query=query.id)
     judgement = Judgement.objects.filter(query=query.id, document=document.id)[0]
+
     rank = -1
     for (count, j) in enumerate(judgements):
         if j.id == judgement.id:

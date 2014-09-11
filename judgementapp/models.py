@@ -8,6 +8,7 @@ from BeautifulSoup import BeautifulSoup as Soup
 class Document(models.Model):
     docId = models.CharField(max_length=250)
     text = models.TextField()
+    format = models.TextField()
 
     def __unicode__(self):
         return self.docId
@@ -17,7 +18,7 @@ class Document(models.Model):
 
         # need to query SQLite DB for the format
         # SELECT format FROM judgementapp_document WHERE docID=' + self.docID + '
-        file_type = "html"
+        file_type = self.format
 
         if file_type == "html":
             try:
@@ -38,9 +39,9 @@ class Document(models.Model):
                         content = "<h5>" + doc_no + "</h5><p>" + text + "</p>"
 
             except Exception:
-                content = "Could not read trrec file %s" % settings.DATA_DIR + "/" + self.docId
+                content = "Could not read trectxt file %s" % settings.DATA_DIR + "/" + self.docId
         else:
-            content = "Unknown format encountered, document parser failed."
+            content = "Unknown format encountered, document parser failed to find a compatable document parser."
 
         return content
 
@@ -70,7 +71,9 @@ class Query(models.Model):
 
 
 class Judgement(models.Model):
-    labels = {-1: 'Unjudged', 0: 'Not relvant', 1: 'Somewhat relevant', 2: 'Highly relevant'}
+
+    # make
+    labels = {-1: 'Unjudged', 0: 'Not relevant', 1: 'Somewhat relevant', 2: 'Highly relevant'}
 
     query = models.ForeignKey(Query)
     document = models.ForeignKey(Document)
