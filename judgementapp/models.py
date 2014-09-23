@@ -26,6 +26,7 @@ class Document(models.Model):
                     content = f.read()
             except Exception:
                 content = "Could not read html file %s" % settings.DATA_DIR + "/" + self.docId
+
         elif file_type == "trec":
             try:
                 with open(settings.DATA_DIR + "/" + self.docId) as f:
@@ -40,6 +41,24 @@ class Document(models.Model):
 
             except Exception:
                 content = "Could not read trectxt file %s" % settings.DATA_DIR + "/" + self.docId
+
+        elif file_type == "trecweb":
+            try:
+                with open(settings.DATA_DIR + "/" + self.docId) as f:
+                    content = f.read()
+
+                    #this is an implementation for trecweb
+                    soup = Soup(content)
+                    for doc in soup.findAll('doc'):
+                        doc_no = doc.find('docno')
+                        doc_old_no = doc.find('docoldno')
+                        html = doc.find('body')
+
+                        content = "<h5>" + doc_no + "</h5><h6>" + doc_old_no +"</h6><div>" + html + "</div>"
+
+            except Exception:
+                content = "Could not read trecweb file %s" % settings.DATA_DIR + "/" + self.docId
+
         else:
             content = "Unknown format encountered, document parser failed to find a compatable document parser."
 
